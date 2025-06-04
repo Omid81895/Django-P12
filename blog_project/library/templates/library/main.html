@@ -1,0 +1,58 @@
+{%extends 'base.html'%}
+{% block title %}<title>Main</title>{% endblock title %}
+{%block content%}
+<div class="container-fluid">
+    <div class="row justify-content-center ps-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Read Status</th>
+                <th scope="col">Added Date</th>
+                <th scope="col">Note</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Submit?</th>
+                <th scope="col">Remove?</th>
+            </tr>
+            <tbody>
+                {%for book in books%}
+                <tr>
+                    {%if book.read_status == 'D'%}
+                        <th scope="row">{{book.id}}</th>
+                        <td><s class="text-secondary">{{book.title}}</s></td>
+                        <td><s class="text-secondary">{{book.author}}</s></td>
+                        <td class="fw-bold text-success">Done</td>
+                    {%elif book.read_status == 'SR'%}
+                        <th scope="row">{{book.id}}</th>
+                        <td>{{book.title}}</td>
+                        <td>{{book.author}}</td>
+                        <td class = 'fw-bold text-info'>Still Reading</td>
+                    {%else%}
+                        <th scope="row">{{book.id}}</th>
+                        <td>{{book.title}}</td>
+                        <td>{{book.author}}</td>
+                        <td class = 'fw-bold text-danger'>Not Read</td>
+                    {%endif%}
+                    <td>{{book.added_date}}</td>
+                    <td><p>{{book.note}}</p></td>
+                    {%if book.priority == 1%}
+                        <td class="fw-bold text-info-emphasis">High</td>
+                    {%elif book.priority == 2%}
+                        <td class="fw-bold text-warning-emphasis">Medium</td>
+                    {%else%}
+                        <td class="fw-bold text-danger-emphasis">Low</td>
+                    {%endif%}
+                    <td><a href=""><input class="btn btn-success" type="button"  value="Submit"></a></td>
+                    <td><a href=""><input class="btn btn-danger" type="button" value="Remove"></a></td>
+                </tr>
+                {%empty%}
+                <li class="text-danger fw-bolder fs-1 text-center">No books are available.</li>
+                {%endfor%}
+            </tbody>
+        </thead>
+    </table>
+    </div>
+    </div>
+{%endblock content%}
