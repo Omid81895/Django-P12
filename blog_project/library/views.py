@@ -6,7 +6,14 @@ def main(request):
     books = Book.objects.all()
     return render(request, 'library/main.html', {'books':books})
 def add(request):
-    pass
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'library/add.html', {'form': form})
+    else:
+        form = BookForm()
+    return render(request, 'library/add.html', {'form': form})
 def change(request, id):
     pass
 def delete(request, id):

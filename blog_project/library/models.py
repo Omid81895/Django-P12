@@ -19,10 +19,9 @@ class Book(models.Model):
     RANKING = (
         ('', 'Pick your priority'),
         (1 , 'High') ,
-        (2 ,'MEDIUM' ) ,
-        (3 , 'LOW') ,
+        (2 ,'Medium' ) ,
+        (3 , 'Low') ,
         )
     priority = models.IntegerField(
-        choices= RANKING,
-        default= 3
+        choices= RANKING
     )
