@@ -44,8 +44,8 @@
                     {%else%}
                         <td class="fw-bold text-danger-emphasis">{{book.get_priority_display}}</td>
                     {%endif%}
-                    <td><a href=""><input class="btn btn-success" type="button"  value="Submit"></a></td>
-                    <td><a href=""><input class="btn btn-danger" type="button" value="Remove"></a></td>
+                    <td><a href="{%url 'change' book.id%}"><input class="btn btn-success" type="button"  value="Submit"></a></td>
+                    <td><a href="{%url 'delete' book.id%}"><input class="btn btn-danger" type="button" value="Remove"></a></td>
                 </tr>
                 {%empty%}
                 <li class="text-danger fw-bolder fs-1 text-center">No books are available.</li>

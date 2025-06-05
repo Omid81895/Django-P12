@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .form import BookForm
 from .models import Book
 # Create your views here.
@@ -15,9 +15,31 @@ def add(request):
         form = BookForm()
     return render(request, 'library/add.html', {'form': form})
 def change(request, id):
-    pass
+    book = Book.objects.get(id = id)
+    if request.method == "POST":
+        form = BookForm(request.POST ,instance =book)
+        if form.is_valid():
+            form.save()
+        return redirect('main')
+    else:
+        form = BookForm(instance=book)
+        return render(request, 'library/change.html', {'form': form})
 def delete(request, id):
-    pass
+    book = Book.objects.get(id = id)
+    if request.method == "POST":
+        form = BookForm(request.POST ,instance =book)
+        if form.is_valid():
+            cd = form.cleaned_data
+            book.title = cd['title']
+            book.author = cd['author']
+            book.priority = cd['priority']
+            book.read_status = cd['read_status']
+            book.note = cd['note']
+            book.delete()
+            return redirect('main')
+    else:
+        form = BookForm(instance=book)
+        return render(request, 'library/delete.html', {'form': form})
 def filter_priority(request):
     pass
 def filter_read(request):
