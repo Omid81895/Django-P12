@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .form import BookForm
+from django.http import HttpResponseRedirect
 from .models import Book
 # Create your views here.
 def main(request):
@@ -40,7 +41,6 @@ def delete(request, id):
     else:
         form = BookForm(instance=book)
         return render(request, 'library/delete.html', {'form': form})
-def filter_priority(request):
-    pass
 def filter_read(request):
-    pass
+    books = Book.objects.all().order_by('read_status')
+    return render(request,'library/filter_read.html', {'books':books})
