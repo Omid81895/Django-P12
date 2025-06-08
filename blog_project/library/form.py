@@ -5,18 +5,6 @@ class BookForm(forms.ModelForm):
     note = forms.CharField(required=False,widget=forms.Textarea({'class': 'form-control'}),help_text='(This part is optional.)')
     class Meta:
         model = Book 
-        READING = (
-            ('' , "How much did you read this book?"),
-            ('D', "Done"),
-            ('SR' , "Still Reading"),
-            ('NR' , "Not Read")
-        )
-        RANKING = (
-            ('', 'Pick your priority'),
-            (1 , 'High') ,
-            (2 ,'Medium' ) ,
-            (3 , 'Low') ,
-        )
         fields = ['title', 'author', 
                   'read_status', 'note', 'priority']
         labels = {
@@ -30,11 +18,9 @@ class BookForm(forms.ModelForm):
             'author': forms.TextInput({
                 'class': 'form-control'
             }),
-            'read_status' : forms.Select(
-                choices=RANKING,
-                attrs={'class': 'form-control'}),
+            'read_status' : forms.RadioSelect(
+                attrs={'class': 'form-check-input'}),
             'priority': forms.Select(
-                choices=RANKING,
                 attrs={'class': 'form-control'})
             
         }

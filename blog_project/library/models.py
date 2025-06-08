@@ -2,17 +2,16 @@ from django.db import models
 
 # Create your models here.
 class Book(models.Model):
-    READING = (
-        ('' , "How much did you read this book?"),
+    READING = [
         ('D', "Done"),
         ('SR' , "Still Reading"),
         ('NR' , "Not Read")
-        )
+    ]
     title = models.CharField()
     author = models.CharField()
     read_status = models.CharField(
         max_length= 2,
-        choices= READING)
+        choices= READING, default='NR')
     added_date = models.DateTimeField(auto_now= True)
     note = models.TextField()
     
@@ -25,3 +24,5 @@ class Book(models.Model):
     priority = models.IntegerField(
         choices= RANKING
     )
+    def __str__(self):
+        return self.title

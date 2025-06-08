@@ -6,7 +6,12 @@
         <h1>Add Task</h1>
         <form action="" method="post">
             {%csrf_token%}
-            {{form.as_div}}
+            {{form.title.label_tag}}
+            {{ form.title }}
+            {% for read in form.read_status %}
+                {{ read }}
+                <label for="{{ read.id_for_label }}"></label>
+            {% endfor %}
             <input class="btn btn-success" type="submit" value="submit">
         </form>
     </div>
