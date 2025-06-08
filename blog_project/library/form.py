@@ -20,7 +20,7 @@ class BookForm(forms.ModelForm):
             }),
             'read_status' : forms.RadioSelect(
                 attrs={'class': 'form-check-input'}),
-            'priority': forms.Select(
-                attrs={'class': 'form-control'})
+            'priority': forms.RadioSelect(
+                attrs={'class': 'form-check-input'})
             
         }

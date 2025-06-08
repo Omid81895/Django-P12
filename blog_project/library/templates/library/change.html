@@ -6,8 +6,25 @@
         <h1>Change Task</h1>
         <form action="" method="post">
             {%csrf_token%}
-            {{form.as_p}}
-            <input class="btn btn-success" type="submit" value="submit">
+            {{form.title.label_tag}}
+            {{ form.title }}
+            {{form.author.label_tag}}
+            {{ form.author }}
+            {{form.read_status.label_tag}}
+            {% for read in form.read_status %}
+                {{ read }}
+                <label for="{{ read.id_for_label }}"></label>
+            {% endfor %}
+            <div>{{form.note.label_tag}}
+                {{form.note.help_text}}
+                {{form.note}}
+            </div>
+            {{form.priority.label_tag}}
+            {% for ranking in form.priority %}
+                {{ranking}}
+                <label for="{{ ranking.id_for_label }}"></label>
+            {%endfor%}
+            <div><input class="btn btn-success mt-5" type="submit" value="submit"></div>
         </form>
     </div>
     </div>

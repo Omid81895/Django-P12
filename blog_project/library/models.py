@@ -15,14 +15,13 @@ class Book(models.Model):
     added_date = models.DateTimeField(auto_now= True)
     note = models.TextField()
     
-    RANKING = (
-        ('', 'Pick your priority'),
+    RANKING = [
         (1 , 'High') ,
         (2 ,'Medium' ) ,
         (3 , 'Low') ,
-        )
+    ]
     priority = models.IntegerField(
-        choices= RANKING
+        choices= RANKING,default=3
     )
     def __str__(self):
         return self.title
