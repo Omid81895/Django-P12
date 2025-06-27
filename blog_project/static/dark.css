@@ -1,0 +1,11 @@
+.dark body{
+    padding-top: 70px;
+    background-color: black;
+    color: white;
+  }
+.dark .table{
+  color: white !important;
+}
+.dark s{
+  color:wheat !important;
+}
